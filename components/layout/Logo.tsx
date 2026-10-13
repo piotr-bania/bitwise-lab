@@ -8,7 +8,7 @@ import {
     logoVariants,
 } from "@/animations/layout/Logo_Variants"
 import { useEffect, useState, useSyncExternalStore } from "react"
-import { AnimatePresence, motion, useReducedMotion } from "motion/react"
+import { AnimatePresence, motion as m, useReducedMotion } from "motion/react"
 
 import Heading from "@/components/ui/text/Heading"
 import Paragraph from "@/components/ui/text/Paragraph"
@@ -76,7 +76,7 @@ export default function Logo() {
                         </span>
                     ) : (
                         <AnimatePresence initial={false} mode="sync">
-                            <motion.span
+                            <m.span
                                 key={format}
                                 className={`${representationClasses} ${formatClasses[format]}`}
                                 aria-hidden="true"
@@ -94,7 +94,7 @@ export default function Logo() {
                                         {row}
                                     </span>
                                 ))}
-                            </motion.span>
+                            </m.span>
                         </AnimatePresence>
                     )}
                 </div>
