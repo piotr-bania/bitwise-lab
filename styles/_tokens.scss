@@ -1,0 +1,180 @@
+/* ---------- Colors ---------- */
+$primary_color: #e6b86d;
+$secondary_color: #f2d2a2;
+$accent_color: #c18a3d;
+
+$heading_color: #fff9ef;
+$paragraph_color: #bcb5ac;
+
+$background_color: #080b0e;
+$foreground_color: #15191c;
+$border_color: #343a3d;
+
+$muted_color: #807b74;
+$disabled_color: #504d48;
+
+$success: #6fd8ad;
+$warning: #d9c45f;
+$danger: #df7079;
+$info: #78a8dc;
+
+$binary_active: #6fd8ad;
+$binary_inactive: #df7079;
+$hexadecimal: #b89af7;
+$technical_teal: #31cdbd;
+
+$border_radius: 6px;
+
+// Default app palette; tenant styling can override these inherited values.
+:root {
+    --primary_color: #{$primary_color};
+    --secondary_color: #{$secondary_color};
+    --accent_color: #{$accent_color};
+
+    --heading_color: #{$heading_color};
+    --paragraph_color: #{$paragraph_color};
+
+    --background_color: #{$background_color};
+    --foreground_color: #{$foreground_color};
+    --border_color: #{$border_color};
+
+    --muted_color: #{$muted_color};
+    --disabled_color: #{$disabled_color};
+
+    --success_color: #{$success};
+    --warning_color: #{$warning};
+    --danger_color: #{$danger};
+    --info_color: #{$info};
+
+    --binary_active: #{$binary_active};
+    --binary_inactive: #{$binary_inactive};
+    --hexadecimal: #{$hexadecimal};
+    --technical_teal: #{$technical_teal};
+
+    --border_radius: #{$border_radius};
+}
+
+// ---------- Fluid fonts ----------
+$paragraph_tiny: clamp(0.69rem, 0.04vi + 0.68rem, 0.72rem);
+$paragraph_small: clamp(0.78rem, 0.19vi + 0.73rem, 0.9rem);
+$paragraph: clamp(0.88rem, 0.38vi + 0.78rem, 1.13rem);
+$header_6: clamp(0.98rem, 0.65vi + 0.82rem, 1.41rem);
+$header_5: clamp(1.11rem, 1vi + 0.86rem, 1.76rem);
+$header_4: clamp(1.25rem, 1.46vi + 0.88rem, 2.2rem);
+$header_3: clamp(1.4rem, 2.07vi + 0.88rem, 2.75rem);
+$header_2: clamp(1.58rem, 2.86vi + 0.86rem, 3.43rem);
+$header_1: clamp(1.77rem, 3.87vi + 0.81rem, 4.29rem);
+
+// ---------- Fluid space ----------
+$small: clamp(1.13rem, calc(1.04rem + 0.41vw), 1.5rem);
+$medium: clamp(1.69rem, calc(1.57rem + 0.61vw), 2.25rem);
+$large: clamp(2.25rem, calc(2.09rem + 0.81vw), 3rem);
+
+.header_1 {
+    font-size: $header_1;
+}
+
+.header_2 {
+    font-size: $header_2;
+}
+
+.header_3 {
+    font-size: $header_3;
+}
+
+.header_4 {
+    font-size: $header_4;
+}
+
+.header_5 {
+    font-size: $header_5;
+}
+
+.header_6 {
+    font-size: $header_6;
+}
+
+.paragraph {
+    font-size: $paragraph;
+}
+
+.paragraph_small {
+    font-size: $paragraph_small;
+}
+
+.paragraph_tiny {
+    font-size: $paragraph_tiny;
+}
+
+// ---------- Color classes ----------
+.primary_color {
+    color: var(--primary_color, #{$primary_color});
+}
+
+.secondary_color {
+    color: var(--secondary_color, #{$secondary_color});
+}
+
+.accent_color {
+    color: var(--accent_color, #{$accent_color});
+}
+
+.heading_color {
+    color: var(--heading_color, #{$heading_color});
+}
+
+.paragraph_color {
+    color: var(--paragraph_color, #{$paragraph_color});
+}
+
+.background_color {
+    color: var(--background_color, #{$background_color});
+}
+
+.foreground_color {
+    color: var(--foreground_color, #{$foreground_color});
+}
+
+.border_color {
+    color: var(--border_color, #{$border_color});
+}
+
+.muted_color {
+    color: var(--muted_color, #{$muted_color});
+}
+
+.disabled_color {
+    color: var(--disabled_color, #{$disabled_color});
+}
+
+.success {
+    color: var(--success_color, #{$success});
+}
+
+.warning {
+    color: var(--warning_color, #{$warning});
+}
+
+.danger {
+    color: var(--danger_color, #{$danger});
+}
+
+.info {
+    color: var(--info_color, #{$info});
+}
+
+.binary_active {
+    color: var(--binary_active, #{$binary_active});
+}
+
+.binary_inactive {
+    color: var(--binary_inactive, #{$binary_inactive});
+}
+
+.hexadecimal {
+    color: var(--hexadecimal, #{$hexadecimal});
+}
+
+.technical_teal {
+    color: var(--technical_teal, #{$technical_teal});
+}

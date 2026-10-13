@@ -1,0 +1,132 @@
+@use "sass:color";
+@use "./tokens" as *;
+
+// Font families
+$heading_font: var(--font-display), "Cormorant Garamond", serif;
+$subheading_font: $heading_font;
+$paragraph_font: var(--font-body), "Inter", sans-serif;
+$mono_font: var(--font-mono), "JetBrains Mono", monospace;
+$button_font: $mono_font;
+
+// Font weights
+$font_light: 300;
+$font_regular: 400;
+$font_semibold: 500;
+$font_bold: 600;
+$font_extrabold: 700;
+
+// Font styles
+$font_italic: italic;
+
+html,
+body {
+    background-color: #080b0e;
+    padding: 0;
+    margin: 0;
+    font-family: $paragraph_font;
+    font-weight: $font_regular;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $heading_font;
+}
+
+/* ---------- Typography styles ---------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--heading_color, #{$heading_color});
+    font-weight: $font_bold;
+    line-height: 1.1;
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    font-size: $header_1;
+}
+
+h2 {
+    font-size: $header_2;
+}
+
+h3 {
+    font-size: $header_3;
+}
+
+h4 {
+    font-size: $header_4;
+}
+
+h5 {
+    font-size: $header_5;
+}
+
+h6 {
+    font-size: $header_6;
+}
+
+p {
+    color: var(--paragraph_color, #{$paragraph_color});
+    font-size: $paragraph;
+    font-weight: $font_light;
+    font-family: $paragraph_font;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: var(--primary_color, #{$primary_color});
+    font-size: $paragraph;
+    font-family: $mono_font;
+    text-transform: capitalize;
+    width: fit-content;
+    cursor: pointer;
+}
+
+button {
+    font-family: $button_font;
+    font-size: $paragraph_tiny;
+    text-transform: uppercase;
+    width: fit-content;
+    color: var(--paragraph_color, #{$paragraph_color});
+    background-color: var(--foreground_color, #{$foreground_color});
+    border: 1px solid var(--border_color, #{$border_color});
+    border-radius: var(--border_radius, #{$border_radius});
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+code,
+pre,
+kbd,
+samp,
+.mono_font {
+    font-family: $mono_font;
+}
+
+.paragraph_small {
+    font-size: $paragraph_small;
+}
+
+.paragraph_tiny {
+    font-size: $paragraph_tiny;
+}
+
+.input_font {
+    font-family: $paragraph_font;
+    font-size: $paragraph_small;
+    font-weight: $font_light;
+    color: var(--paragraph_color, #{$paragraph_color});
+}

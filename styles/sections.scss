@@ -1,0 +1,18 @@
+@use "./tokens" as *;
+
+section {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+    padding: $small;
+    gap: $small;
+
+    @media screen and (min-width: 769px) and (max-width: 1023px) {
+        grid-template-columns: repeat(8, 1fr);
+    }
+
+    @media screen and (max-width: 767px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
