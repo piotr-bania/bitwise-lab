@@ -29,7 +29,7 @@ export default function Sidebar({
 
     return (
         <Card
-            className={`w-full shrink-0 lg:sticky lg:top-0 lg:max-h-screen lg:w-[300px] lg:overflow-y-auto ${className}`}
+            className={`w-full shrink-0 xl:sticky xl:top-0 xl:max-h-screen xl:w-[300px] xl:overflow-y-auto ${className}`}
         >
             <nav aria-label={label}>
                 {categories.map((category, index) => (

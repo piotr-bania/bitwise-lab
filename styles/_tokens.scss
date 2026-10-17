@@ -13,15 +13,15 @@ $border_color: #343a3d;
 $muted_color: #807b74;
 $disabled_color: #504d48;
 
-$success: #6fd8ad;
-$warning: #d9c45f;
-$danger: #df7079;
-$info: #78a8dc;
+$success: #00ff88;
+$warning: #ffff00;
+$danger: #ff1744;
+$info: #00bfff;
 
-$binary_active: #6fd8ad;
-$binary_inactive: #df7079;
-$hexadecimal: #b89af7;
-$technical_teal: #31cdbd;
+$binary_active: #00ff88;
+$binary_inactive: #ff1744;
+$hexadecimal: #d580ff;
+$technical_teal: #00fff0;
 
 $border_radius: 6px;
 
@@ -56,6 +56,8 @@ $border_radius: 6px;
 
 // ---------- Fluid fonts ----------
 $paragraph_tiny: clamp(0.69rem, 0.04vi + 0.68rem, 0.72rem);
+// Base button: 1.5 line height, 8px vertical padding, 1px borders.
+$control_height: calc(#{$paragraph_tiny} * 1.5 + 18px);
 $paragraph_small: clamp(0.78rem, 0.19vi + 0.73rem, 0.9rem);
 $paragraph: clamp(0.88rem, 0.38vi + 0.78rem, 1.13rem);
 $header_6: clamp(0.98rem, 0.65vi + 0.82rem, 1.41rem);

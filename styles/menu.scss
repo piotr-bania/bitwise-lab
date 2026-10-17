@@ -1,0 +1,60 @@
+@use "./tokens" as *;
+
+.navbar {
+    position: relative;
+
+    &_content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.menu {
+    margin-right: $small;
+    flex-shrink: 0;
+
+    &_toggle {
+        position: relative;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: $control_height;
+        height: $control_height;
+        padding: 0;
+    }
+
+    &_overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 40;
+        background: rgba(0, 0, 0, 0.6);
+        touch-action: none;
+    }
+
+    &_panel {
+        position: absolute;
+        top: 100%;
+        right: $small;
+        z-index: 50;
+        width: min(24rem, calc(100vw - #{$small} * 2));
+        max-height: calc(100dvh - 8rem);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        border-radius: var(--border_radius);
+        background: var(--background_color);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    }
+
+    &_sidebar.card {
+        position: static;
+        width: 100%;
+        max-height: none;
+        overflow: visible;
+    }
+
+    @media (min-width: 1280px) {
+        display: none;
+    }
+}

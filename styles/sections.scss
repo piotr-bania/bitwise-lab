@@ -18,5 +18,6 @@ section {
 
     @media screen and (max-width: 767px) {
         grid-template-columns: repeat(4, 1fr);
+        padding: calc($small * 0.5);
     }
 }
