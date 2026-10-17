@@ -8,6 +8,10 @@ section {
     padding: $small;
     gap: $small;
 
+    &.app_layout {
+        padding-top: 0;
+    }
+
     @media screen and (min-width: 769px) and (max-width: 1023px) {
         grid-template-columns: repeat(8, 1fr);
     }

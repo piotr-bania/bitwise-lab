@@ -6,7 +6,6 @@ $heading_font: var(--font-display), "Cormorant Garamond", serif;
 $subheading_font: $heading_font;
 $paragraph_font: var(--font-body), "Inter", sans-serif;
 $mono_font: var(--font-mono), "JetBrains Mono", monospace;
-$button_font: $mono_font;
 
 // Font weights
 $font_light: 300;
@@ -45,7 +44,7 @@ h3,
 h4,
 h5,
 h6 {
-    color: var(--heading_color, #{$heading_color});
+    color: $heading_color;
     font-weight: $font_bold;
     line-height: 1.1;
     padding: 0;
@@ -77,7 +76,7 @@ h6 {
 }
 
 p {
-    color: var(--paragraph_color, #{$paragraph_color});
+    color: $paragraph_color;
     font-size: $paragraph;
     font-weight: $font_light;
     font-family: $paragraph_font;
@@ -87,24 +86,11 @@ p {
 }
 
 a {
-    color: var(--primary_color, #{$primary_color});
+    color: $primary_color;
     font-size: $paragraph;
     font-family: $mono_font;
     text-transform: capitalize;
     width: fit-content;
-    cursor: pointer;
-}
-
-button {
-    font-family: $button_font;
-    font-size: $paragraph_tiny;
-    text-transform: uppercase;
-    width: fit-content;
-    color: var(--paragraph_color, #{$paragraph_color});
-    background-color: var(--foreground_color, #{$foreground_color});
-    border: 1px solid var(--border_color, #{$border_color});
-    border-radius: var(--border_radius, #{$border_radius});
-    padding: 8px 16px;
     cursor: pointer;
 }
 
@@ -114,6 +100,13 @@ kbd,
 samp,
 .mono_font {
     font-family: $mono_font;
+}
+
+.tag {
+    font-family: $mono_font;
+    font-size: $paragraph_tiny;
+    color: $secondary_color;
+    text-transform: uppercase;
 }
 
 .paragraph_small {
@@ -128,5 +121,9 @@ samp,
     font-family: $paragraph_font;
     font-size: $paragraph_small;
     font-weight: $font_light;
-    color: var(--paragraph_color, #{$paragraph_color});
+    color: $paragraph_color;
+}
+
+.uppercase {
+    text-transform: uppercase;
 }

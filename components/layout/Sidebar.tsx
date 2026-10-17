@@ -1,31 +1,14 @@
 "use client"
 
-import {
-    sidebarRoutes,
-    type SidebarCategory,
-    type SidebarIconName,
-} from "@/lib/sidebarRoutes"
-import {
-    PiLightbulbDuotone,
-    PiSquaresFourDuotone,
-    PiStackDuotone,
-    PiBrainDuotone,
-    PiTrophyDuotone,
-} from "react-icons/pi"
+import { sidebarRoutes, type SidebarCategory } from "@/lib/sidebarRoutes"
+import { routeIcons } from "@/lib/routeIcons"
 import { useId } from "react"
 import { usePathname } from "next/navigation"
 
+import Card from "@/components/ui/cards/Card"
 import Heading from "@/components/ui/text/Heading"
 import Divider from "@/components/ui/dividers/Divider"
 import Sidebar_Button from "@/components/ui/buttons/Sidebar_Button"
-
-const icons = {
-    lightbulb: PiLightbulbDuotone,
-    grid: PiSquaresFourDuotone,
-    stack: PiStackDuotone,
-    brain: PiBrainDuotone,
-    trophy: PiTrophyDuotone,
-} satisfies Record<SidebarIconName, unknown>
 
 export type SidebarProps = {
     categories?: readonly SidebarCategory[]
@@ -45,10 +28,10 @@ export default function Sidebar({
     const currentHref = activeHref ?? pathname
 
     return (
-        <aside
-            className={`w-full shrink-0 lg:sticky lg:top-0 lg:max-h-screen lg:w-[276px] lg:overflow-y-auto ${className}`}
+        <Card
+            className={`w-full shrink-0 lg:sticky lg:top-0 lg:max-h-screen lg:w-[300px] lg:overflow-y-auto ${className}`}
         >
-            <nav aria-label={label} className="px-4 py-5">
+            <nav aria-label={label}>
                 {categories.map((category, index) => (
                     <div key={category.id}>
                         {index > 0 && <Divider className="my-5" />}
@@ -64,7 +47,7 @@ export default function Sidebar({
                         >
                             {category.routes.map((route) => {
                                 const Icon = route.icon
-                                    ? icons[route.icon]
+                                    ? routeIcons[route.icon]
                                     : undefined
                                 return (
                                     <li key={route.id}>
@@ -72,6 +55,7 @@ export default function Sidebar({
                                             href={route.href}
                                             label={route.label}
                                             badge={route.badge}
+                                            isDisabled={route.disabled}
                                             icon={Icon && <Icon size={24} />}
                                             state={
                                                 currentHref === route.href
@@ -87,6 +71,6 @@ export default function Sidebar({
                     </div>
                 ))}
             </nav>
-        </aside>
+        </Card>
     )
 }

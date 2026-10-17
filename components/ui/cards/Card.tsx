@@ -24,7 +24,7 @@ export default function Card({
 }: CardProps) {
     return (
         <div
-            className={`min-w-0 rounded-xl border bg-[var(--background_color)] shadow-sm ${variant === "gold" ? "border-[var(--primary_color)]" : "border-[var(--border_color)]"} ${paddingClasses[padding]} ${className}`}
+            className={`card min-w-0 rounded-xl ${variant === "gold" ? "card--gold" : ""} ${paddingClasses[padding]} ${className}`}
             {...props}
         >
             {(title || description || icon || actions) && (

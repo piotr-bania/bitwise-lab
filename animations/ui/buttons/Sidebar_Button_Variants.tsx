@@ -10,6 +10,4 @@ export const sidebarButtonVariants: Variants = {
             ease: [0.22, 1, 0.36, 1],
         },
     },
-    hovered: { x: 2, transition: { duration: 0.18 } },
-    pressed: { scale: 0.98, transition: { duration: 0.1 } },
 }

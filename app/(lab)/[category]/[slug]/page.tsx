@@ -5,7 +5,7 @@ import { sidebarRoutes } from "@/lib/sidebarRoutes"
 export function generateStaticParams() {
     return sidebarRoutes
         .flatMap((category) => category.routes)
-        .filter((route) => route.href !== "/")
+        .filter((route) => route.href.split("/").length === 3)
         .map((route) => {
             const [, category, slug] = route.href.split("/")
             return { category, slug }

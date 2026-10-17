@@ -1,10 +1,11 @@
 "use client"
 
-import Link from "next/link"
-import { motion as m, useReducedMotion } from "motion/react"
-import type { ComponentProps, ReactNode } from "react"
 import { PiCaretRightDuotone } from "react-icons/pi"
+import type { ComponentProps, ReactNode } from "react"
+import { motion as m, useReducedMotion } from "motion/react"
 import { sidebarButtonVariants } from "@/animations/ui/buttons/Sidebar_Button_Variants"
+
+import Link from "next/link"
 
 export type SidebarButtonProps = Omit<
     ComponentProps<typeof Link>,
@@ -15,6 +16,7 @@ export type SidebarButtonProps = Omit<
     badge?: string
     state?: "normal" | "hovered" | "active"
     showChevron?: boolean
+    isDisabled?: boolean
 }
 
 export default function Sidebar_Button({
@@ -23,52 +25,63 @@ export default function Sidebar_Button({
     badge,
     state = "normal",
     showChevron = false,
+    isDisabled = false,
     className = "",
     ...props
 }: SidebarButtonProps) {
     const reducedMotion = useReducedMotion()
-    const active = state === "active"
-    const highlighted = active || state === "hovered"
+    const active = !isDisabled && state === "active"
+    const highlighted = !isDisabled && (active || state === "hovered")
+
+    const buttonClassName = `button sidebar_button ${isDisabled ? "disabled" : active ? "sidebar_button--active" : highlighted ? "sidebar_button--hovered" : ""} ${className}`
+    const content = (
+        <>
+            {badge ? (
+                <span aria-hidden="true" className="sidebar_button_badge">
+                    {badge}
+                </span>
+            ) : icon ? (
+                <span className="sidebar_button_icon" aria-hidden="true">
+                    {icon}
+                </span>
+            ) : null}
+            <span className="sidebar_button_label">{label}</span>
+            {showChevron && (
+                <PiCaretRightDuotone
+                    size={16}
+                    className="sidebar_button_chevron"
+                    aria-hidden="true"
+                />
+            )}
+        </>
+    )
 
     return (
         <m.div
-            className="w-full"
+            className="sidebar_button_wrapper"
             variants={sidebarButtonVariants}
             initial={reducedMotion ? false : "hidden"}
             animate="visible"
-            whileHover={reducedMotion ? undefined : "hovered"}
-            whileTap={reducedMotion ? undefined : "pressed"}
         >
-            <Link
-                {...props}
-                aria-current={active ? "page" : undefined}
-                data-state={state}
-                className={`group flex min-h-12 !w-full items-center gap-3 rounded-lg border px-3 py-2.5 !font-[family-name:var(--font-body)] !text-[13px] !normal-case transition-colors duration-200 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary_color)] ${active ? "border-[var(--primary_color)] bg-gradient-to-r from-[var(--primary_color)]/25 to-[var(--primary_color)]/10 !text-[var(--heading_color)] shadow-[inset_0_0_16px_#e6b86d0d]" : highlighted ? "border-[var(--border_color)] bg-[var(--foreground_color)] !text-[var(--heading_color)]" : "border-transparent !text-[var(--paragraph_color)] hover:border-[var(--border_color)] hover:bg-[var(--foreground_color)] hover:!text-[var(--heading_color)]"} ${className}`}
-            >
-                {badge ? (
-                    <span
-                        aria-hidden="true"
-                        className={`mono_font flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-[12px] font-semibold ${active ? "bg-[var(--primary_color)] text-[var(--background_color)]" : "bg-[var(--paragraph_color)]/70 text-[var(--background_color)]"}`}
-                    >
-                        {badge}
-                    </span>
-                ) : icon ? (
-                    <span
-                        className={`flex h-7 w-7 shrink-0 items-center justify-center ${highlighted ? "text-[var(--primary_color)]" : "text-[var(--paragraph_color)]"}`}
-                        aria-hidden="true"
-                    >
-                        {icon}
-                    </span>
-                ) : null}
-                <span className="min-w-0 flex-1 leading-5">{label}</span>
-                {showChevron && (
-                    <PiCaretRightDuotone
-                        size={16}
-                        className="shrink-0"
-                        aria-hidden="true"
-                    />
-                )}
-            </Link>
+            {isDisabled ? (
+                <span
+                    role="link"
+                    aria-disabled="true"
+                    className={buttonClassName}
+                    data-state="disabled"
+                >
+                    {content}
+                </span>
+            ) : (
+                <Link
+                    {...props}
+                    aria-current={active ? "page" : undefined}
+                    data-state={state}
+                    className={buttonClassName}
+                >
+                    {content}
+                </Link>
+            )}
         </m.div>
     )
 }

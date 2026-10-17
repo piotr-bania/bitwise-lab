@@ -1,0 +1,232 @@
+@use "./tokens" as *;
+@use "./typography" as typography;
+
+$button_font: typography.$mono_font;
+
+// Registered percentages let the gradient fade in both directions.
+@property --button-gradient-start {
+    syntax: "<percentage>";
+    inherits: false;
+    initial-value: 0%;
+}
+
+@property --button-gradient-end {
+    syntax: "<percentage>";
+    inherits: false;
+    initial-value: 0%;
+}
+
+@mixin button-gradient($start, $end) {
+    --button-gradient-start: #{$start};
+    --button-gradient-end: #{$end};
+    background-image: linear-gradient(
+        to right,
+        color-mix(
+            in srgb,
+            var(--primary_color) var(--button-gradient-start),
+            transparent
+        ),
+        color-mix(
+            in srgb,
+            var(--primary_color) var(--button-gradient-end),
+            transparent
+        )
+    );
+}
+
+@mixin active-button-surface {
+    border-color: var(--primary_color);
+    background-color: transparent;
+    @include button-gradient(25%, 10%);
+    color: var(--heading_color);
+    --button-inset-shadow: inset 0 0 16px #e6b86d0d;
+}
+
+button,
+.button {
+    font-family: $button_font;
+    font-size: $paragraph_tiny;
+    text-transform: uppercase;
+    width: fit-content;
+    color: var(--paragraph_color, #{$paragraph_color});
+    background-color: var(--foreground_color, #{$foreground_color});
+    border: 1px solid var(--border_color, #{$border_color});
+    border-radius: var(--border_radius, #{$border_radius});
+    padding: 8px 16px;
+    cursor: pointer;
+    --button-inset-shadow: inset 0 0 0 transparent;
+    box-shadow:
+        var(--button-inset-shadow),
+        0 0 12px #e6b86d00;
+    transition:
+        color 200ms,
+        background-color 200ms,
+        border-color 200ms,
+        box-shadow 180ms,
+        scale 100ms,
+        --button-gradient-start 240ms ease,
+        --button-gradient-end 240ms ease;
+
+    &:not(.disabled):not(:disabled):not([aria-disabled="true"]) {
+        &:hover,
+        &[data-state="hovered"] {
+            border-color: var(--primary_color);
+            color: var(--heading_color);
+            box-shadow:
+                var(--button-inset-shadow),
+                0 0 12px #e6b86d15;
+        }
+
+        &:active {
+            scale: 0.98;
+        }
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--primary_color);
+        outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+
+        &:not(.disabled):not(:disabled):not([aria-disabled="true"]):active {
+            scale: 1;
+        }
+    }
+}
+
+.sidebar_button {
+    display: flex;
+    min-height: 3rem;
+    width: 100%;
+    align-items: center;
+    gap: 0.5rem;
+    border-color: transparent;
+    border-radius: 0.5rem;
+    background-color: transparent;
+    padding: 0.25rem 0.5rem;
+
+    &:hover,
+    &--hovered {
+        border-color: var(--border_color);
+        background-color: var(--foreground_color);
+        color: var(--heading_color);
+    }
+
+    &--active,
+    &--active:hover {
+        @include active-button-surface;
+    }
+
+    &_wrapper {
+        width: 100%;
+    }
+
+    &_badge,
+    &_icon {
+        display: flex;
+        height: 1.75rem;
+        width: 1.75rem;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &_badge {
+        border-radius: 0.375rem;
+        background-color: color-mix(
+            in srgb,
+            var(--paragraph_color) 70%,
+            transparent
+        );
+        color: var(--background_color);
+        font-family: typography.$mono_font;
+        font-size: 12px;
+        font-weight: 600;
+
+        .sidebar_button--active & {
+            background-color: var(--primary_color);
+        }
+    }
+
+    &_icon {
+        color: var(--paragraph_color);
+
+        .sidebar_button--active &,
+        .sidebar_button--hovered & {
+            color: var(--primary_color);
+        }
+    }
+
+    &_label {
+        min-width: 0;
+        flex: 1;
+        line-height: 1.25rem;
+    }
+
+    &_chevron {
+        flex-shrink: 0;
+    }
+}
+
+.button {
+    &--primary {
+        @include active-button-surface;
+
+        &:not(.disabled):not(:disabled):not([aria-disabled="true"]) {
+            &:hover,
+            &[data-state="hovered"] {
+                background-color: transparent;
+                @include button-gradient(60%, 40%);
+            }
+        }
+
+        &:focus-visible {
+            outline-offset: 4px;
+        }
+    }
+
+    &--ghost {
+        background-color: transparent;
+        @include button-gradient(10%, 5%);
+        border-color: color-mix(in srgb, var(--primary_color) 15%, transparent);
+        color: var(--paragraph_color);
+
+        &:not(.disabled):not(:disabled):not([aria-disabled="true"]) {
+            &:hover,
+            &[data-state="hovered"] {
+                background-color: transparent;
+                @include button-gradient(24%, 7%);
+                border-color: color-mix(
+                    in srgb,
+                    var(--primary_color) 45%,
+                    transparent
+                );
+                color: var(--heading_color);
+            }
+        }
+    }
+}
+
+button,
+.button {
+    &.disabled,
+    &:disabled,
+    &[aria-disabled="true"] {
+        color: var(--muted_color);
+        box-shadow: none;
+        cursor: default;
+        user-select: none;
+        pointer-events: none;
+        opacity: 0.5;
+
+        .sidebar_button_icon {
+            color: var(--muted_color);
+        }
+
+        .sidebar_button_badge {
+            background-color: var(--muted_color);
+        }
+    }
+}

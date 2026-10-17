@@ -1,26 +1,37 @@
-import { sidebarRoutes } from "@/lib/sidebarRoutes"
-
-import Card from "@/components/ui/cards/Card"
+import Link from "next/link"
 import Heading from "@/components/ui/text/Heading"
 import Paragraph from "@/components/ui/text/Paragraph"
 
 export default function Home_Page() {
     return (
-        <Card
-            title={sidebarRoutes[0].routes[0].label}
-            description={sidebarRoutes[0].routes[0].description}
+        <main
+            id="main-content"
+            className="flex flex-1 items-center justify-center"
         >
-            <div className="flex flex-col gap-1">
-                <Heading h1="Heading 1" />
-                <Heading h2="Heading 2" />
-                <Heading h3="Heading 3" />
-                <Heading h4="Heading 4" />
-                <Heading h5="Heading 5" />
-                <Heading h6="Heading 6" />
-                <Paragraph text="This is a paragraph." />
-                <a href="">This is a link</a>
-                <button>This is a button</button>
-            </div>
-        </Card>
+            <section className="items-center">
+                <div className="col-span-full mx-auto flex w-full max-w-2xl flex-col items-center justify-center gap-6 text-center">
+                    <Paragraph
+                        text="Decimal. Binary. Hexadecimal."
+                        className="tag"
+                    />
+
+                    <div>
+                        <Heading h1="A different base." />
+                        <Heading h2="A whole new understanding." />
+                    </div>
+
+                    <Paragraph text="Numbers speak more than one language. Bitwise Lab helps you connect decimal, binary and hexadecimal, explore how conversions work, and build your confidence one bit at a time." />
+
+                    <div>
+                        <Link
+                            href="/decimal-binary"
+                            className="button button--primary inline-flex items-center gap-3"
+                        >
+                            Start with Decimal &rarr; Binary
+                        </Link>
+                    </div>
+                </div>
+            </section>
+        </main>
     )
 }

@@ -2,12 +2,9 @@ import "./globals.css"
 import "./globals.scss"
 
 import type { Metadata } from "next"
-
 import { Cormorant_Garamond, Inter, JetBrains_Mono } from "next/font/google"
 
-import Logo from "@/components/layout/Logo"
-import Sidebar from "@/components/layout/Sidebar"
-import Divider from "@/components/ui/dividers/Divider"
+import Navbar from "@/components/layout/Navbar"
 
 const cormorant = Cormorant_Garamond({
     subsets: ["latin"],
@@ -110,27 +107,14 @@ export default function RootLayout({
             <body
                 suppressHydrationWarning
                 className={[
+                    "flex min-h-dvh flex-col",
                     cormorant.variable,
                     inter.variable,
                     jetbrainsMono.variable,
                 ].join(" ")}
             >
-                <Logo />
-                <Divider />
-                
-                <div className="flex min-h-[calc(100dvh-120px)] flex-col items-stretch lg:flex-row lg:items-start">
-                    <Sidebar />
-                    <Divider
-                        orientation="vertical"
-                        className="hidden lg:block"
-                    />
-                    <main
-                        id="main-content"
-                        className="min-w-0 flex-1 p-4 sm:p-5"
-                    >
-                        {children}
-                    </main>
-                </div>
+                <Navbar />
+                {children}
             </body>
         </html>
     )
