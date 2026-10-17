@@ -32,7 +32,7 @@ const tabs = [
     "Step by step",
     "Visualisation",
     "Place values",
-    "All formats",
+    // "All formats",
 ] as const
 const route = sidebarRoutes[0].routes[0]
 const reverseRoute = sidebarRoutes
